@@ -1,19 +1,21 @@
 # Original credit: https://github.com/jpetazzo/dockvpn
+# Forked from: kylemanna/docker-openvpn
 
-# Smallest base image
-FROM alpine:latest
+# Debian Minimal Image
+FROM bitnami/minideb:stretch
 
-LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
+LABEL maintainer="Sam Burney <sam@burney.io>"
 
-# Testing: pamtester
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
-    apk add --update openvpn iptables bash easy-rsa openvpn-auth-pam google-authenticator pamtester && \
-    ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin && \
-    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+# Install packages
+RUN install_packages openvpn iptables quagga systemd wget openssl
+
+# Install easy-rsa 3.x
+RUN cd /usr/local/share && wget -nv --no-check-certificate https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.tgz && tar xf EasyRSA-3.0.4.tgz && mv EasyRSA-3.0.4 easy-rsa && rm EasyRSA-3.0.4.tgz
+RUN ln -s /usr/local/share/easy-rsa/easyrsa /usr/local/bin
 
 # Needed by scripts
 ENV OPENVPN /etc/openvpn
-ENV EASYRSA /usr/share/easy-rsa
+ENV EASYRSA /usr/local/share/easy-rsa
 ENV EASYRSA_PKI $OPENVPN/pki
 ENV EASYRSA_VARS_FILE $OPENVPN/vars
 
@@ -31,4 +33,4 @@ ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
 
 # Add support for OTP authentication using a PAM module
-ADD ./otp/openvpn /etc/pam.d/
+#ADD ./otp/openvpn /etc/pam.d/
