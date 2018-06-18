@@ -8,6 +8,7 @@ services:
     cap_add:
      - NET_ADMIN
      - SYS_ADMIN
+     - NET_BROADCAST
     container_name: openvpn
     ports:
      - "1194:1194/udp"
