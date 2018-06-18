@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bash
+
+# If config file exists, start daemon
+if [ -f /etc/quagga/isisd.conf ] ; then
+    echo "Starting Quagga (isisd)"
+
+    exec \
+        /usr/lib/quagga/isisd
+else
+    # Otherwise sleep for a while...
+    sleep 60
+fi

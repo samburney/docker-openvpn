@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bash
+
+# If config file exists, start daemon
+if [ -f /etc/quagga/ripd.conf ] ; then
+    echo "Starting Quagga (ripd)"
+
+    exec \
+        /usr/lib/quagga/ripd
+else
+    # Otherwise sleep for a while...
+    sleep 60
+fi

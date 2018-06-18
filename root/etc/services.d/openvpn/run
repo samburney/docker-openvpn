@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+
+echo "Starting OpenVPN"
+
+exec \
+	/usr/local/bin/ovpn_run

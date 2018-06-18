@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bash
+
+# If config file exists, start daemon
+if [ -f /etc/quagga/bgpd.conf ] ; then
+    echo "Starting Quagga (bgpd)"
+
+    exec \
+        /usr/lib/quagga/bgpd
+else
+    # Otherwise sleep for a while...
+    sleep 60
+fi

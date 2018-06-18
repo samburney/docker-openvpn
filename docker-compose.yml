@@ -1,0 +1,20 @@
+version: '2.4'
+
+services:
+  openvpn:
+    build: .
+    image: samburney/openvpn:latest
+    restart: unless-stopped
+    cap_add:
+     - NET_ADMIN
+     - SYS_ADMIN
+    container_name: openvpn
+    ports:
+     - "1194:1194/udp"
+    volumes:
+     - openvpn-data:/etc/openvpn
+     - quagga-data:/etc/quagga
+
+volumes:
+  openvpn-data:
+  quagga-data:
