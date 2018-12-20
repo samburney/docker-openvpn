@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 # If config file exists, start daemon
-if [ -f /etc/quagga/isisd.conf ] ; then
-    echo "Starting Quagga (isisd)"
+if [ -f /etc/frr/isisd.conf ] ; then
+    echo "Starting FRRouting (isisd)"
 
     exec \
-        /usr/lib/quagga/isisd
+        /usr/lib/frr/isisd
 else
     # Otherwise sleep for a while...
     sleep 60

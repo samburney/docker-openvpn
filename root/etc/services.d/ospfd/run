@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 # If config file exists, start daemon
-if [ -f /etc/quagga/ospfd.conf ] ; then
-    echo "Starting Quagga (ospfd)"
+if [ -f /etc/frr/ospfd.conf ] ; then
+    echo "Starting FRRouting (ospfd)"
 
     exec \
-        /usr/lib/quagga/ospfd
+        /usr/lib/frr/ospfd
 else
     # Otherwise sleep for a while...
     sleep 60

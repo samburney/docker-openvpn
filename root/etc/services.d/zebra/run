@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 # If config file exists, start daemon
-if [ -f /etc/quagga/zebra.conf ] ; then
-    echo "Starting Quagga (zebra)"
+if [ -f /etc/frr/zebra.conf ] ; then
+    echo "Starting FRRouting (zebra)"
 
     exec \
-        /usr/lib/quagga/zebra
+        /usr/lib/frr/zebra
 else
     # Otherwise sleep for a while...
     sleep 60

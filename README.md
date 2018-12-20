@@ -2,7 +2,7 @@
 
 OpenVPN server in a Docker container complete with an EasyRSA PKI CA.
 
-Running on Debian base image with Quagga installed for dynamic routing
+This fork includes FRRouting to allow for dynamic routing of client pools and is based on Linuxserver.io's excellent base image which includes S9 for easier service management.
 
 #### Upstream Links
 

@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 # If config file exists, start daemon
-if [ -f /etc/quagga/babeld.conf ] ; then
-    echo "Starting Quagga (babeld)"
+if [ -f /etc/frr/babeld.conf ] ; then
+    echo "Starting FRRouting (babeld)"
 
     exec \
-        /usr/lib/quagga/babeld
+        /usr/lib/frr/babeld
 else
     # Otherwise sleep for a while...
     sleep 60
